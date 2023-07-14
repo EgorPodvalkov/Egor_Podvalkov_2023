@@ -12,21 +12,24 @@ for (int i = 0; i < listLength; i++)
 Console.Write("\nEnter number to dublicate: ");
 var dublNum = Int32.Parse(Console.ReadLine());
 
-var dublList = new List<int>();
-
 Console.WriteLine("\nYour list: ");
 
 foreach (int num in list)
 {
-    dublList.Add(num);
-    if (num == dublNum)
-        dublList.Add(num);
-
     Console.Write($"{num}, ");
 }
 
+for (int i = 0; i < list.Count; i++)
+{
+    if (list[i] == dublNum)
+    {
+        list.Insert(i, dublNum);
+        i++;
+    }
+}
+
 Console.WriteLine("\nList with dublicates: ");
-foreach (int num in dublList)
+foreach (int num in list)
 {
     Console.Write($"{num}, ");
 }
