@@ -1,0 +1,17 @@
+﻿@{
+    Layout = null;
+}
+@model User
+
+<html>
+<head>
+    <title>Role</title>
+    <link rel="stylesheet" type="text/css" href="~/css/site.css">
+</head>
+<body>
+    @{
+        var role = Model.IsAdmin ? "'Admin'" : "not 'Admin'";
+    }
+    <h2>Your role is @role</h2>
+</body>
+</html>

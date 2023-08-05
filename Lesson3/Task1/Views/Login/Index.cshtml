@@ -1,0 +1,70 @@
+﻿﻿@{
+    Layout = null;
+}
+@model Task1.Models.MessageModel?
+
+<html>
+<head>
+    <title>Login Form</title>
+    <link rel="stylesheet" type="text/css" href="~/css/site.css">
+</head>
+<body>
+    <h2>Login Page</h2>
+    <form method="post" action="/Login/Login" id="login">
+        <table>
+            <tbody>
+                <tr>
+                    <td><label><b>User Name*</b></label></td>
+                    <td><input type="text" name="username" id="Uname" placeholder="Username" onchange="hideNameErr()"></td>
+                    <td><p id="nameErr" style="display:none; color:red"></p></td>
+                </tr>
+                <tr>
+                    <td><label><b>Password*</b></label></td>
+                    <td><input type="Password" name="Pass" id="Pass" placeholder="Password" onchange="hidePassErr()"></td>
+                    <td><p id="passErr" style="display:none; color:red"></p></td>
+                </tr>
+            </tbody>
+        </table>
+        @if (Model != null)
+        {
+            <p id="nameErr" style="color:red">@Model.Message</p>
+        }
+        <br>
+        <input type="submit" name="log" id="log" value="Log In Here">
+        <br><br>
+        @*<input type="checkbox" name="remember" id="check">
+        <span>Remember me</span>*@
+    </form>
+<script>
+    let loginForm = document.getElementById("login");
+    loginForm.addEventListener("submit", (e) => {
+        let username = document.getElementById("Uname").value;
+        let password = document.getElementById("Pass").value;
+
+        if (username == ""){
+            e.preventDefault();
+            let err = document.getElementById("nameErr")
+            err.innerText = "This field can not be empty!";
+            err.style.display = "inline";
+        }
+        else if (password == ""){
+            e.preventDefault();
+            let err = document.getElementById("passErr")
+            err.innerText = "This field can not be empty!";
+            err.style.display = "inline";
+        }
+    });
+
+    function hideNameErr(){
+        let err = document.getElementById("nameErr")
+        err.style.display = "none";
+    }
+
+    function hidePassErr(){
+        let err = document.getElementById("passErr")
+        err.style.display = "none";
+    }
+
+</script>
+</body>
+</html>
