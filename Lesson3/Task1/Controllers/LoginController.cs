@@ -18,23 +18,27 @@ namespace Task1.Controllers
             return View();
         }
 
-        public IActionResult Login()
+        public IActionResult Login(UserValidationModel user)
         {
-            string username = this.Request.Form["username"];
-            string password = this.Request.Form["Pass"];
-            //bool remember = this.Request.Form["remember"] == "on";
-
-            if (_db.CheckUser(username, password))
+            // If bad Validation
+            if (!ModelState.IsValid)
             {
-                Response.Cookies.Append("username", username);
-                Response.Cookies.Append("password", password);
-                
+                return View("Index", user);
+            }
 
-                return RedirectToAction("Index", "RoleUser");
+            // If no such user in db
+            if(!_db.CheckUser(user.UserName, user.Password))
+            {
+                user.Message = "Bad password or username :(";
+                return View("Index", user);
+
             }
             
-            var err = new MessageModel("Bad password or username :(");
-            return View("Index", err);
+            // If good logining
+            Response.Cookies.Append("username", user.UserName);
+            Response.Cookies.Append("password", user.Password);
+                
+            return RedirectToAction("Index", "RoleUser");
         }
     }
 }

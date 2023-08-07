@@ -4,37 +4,37 @@ namespace Task1.Database
 {
     public class Database : IDatabaseService
     {
-        private readonly IEnumerable<User> _users;
+        private readonly IEnumerable<UserModel> _users;
 
         /// <summary>
         /// Creates emulation of empty database
         /// </summary>
         public Database()
         {
-            _users = new List<User>() 
+            _users = new List<UserModel>() 
             {
-                new User()
+                new UserModel()
                 {
                     UserID = 1,
                     UserName = "Test",
                     Password = "Test",
                     IsAdmin = false,
                 },
-                new User()
+                new UserModel()
                 {
                     UserID = 2,
                     UserName = "FakeAdmin",
                     Password = "admin",
                     IsAdmin = false,
                 },
-                new User()
+                new UserModel()
                 {
                     UserID = 2,
                     UserName = "RealAdmin",
                     Password = "admin",
                     IsAdmin = true,
                 },
-                new User()
+                new UserModel()
                 {
                     UserID = 3,
                     UserName = "a",
@@ -53,7 +53,7 @@ namespace Task1.Database
                 .Any();
         }
         
-        public User? GetUserByName(string username)
+        public UserModel? GetUserByName(string username)
         {
             return _users.FirstOrDefault(x => x.UserName == username);
         }

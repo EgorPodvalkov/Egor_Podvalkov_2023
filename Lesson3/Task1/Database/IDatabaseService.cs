@@ -17,6 +17,6 @@ namespace Task1.Database
         /// </summary>
         /// <param name="username"></param>
         /// <returns>User if user is in database, null if not</returns>
-        User? GetUserByName(string username);
+        UserModel? GetUserByName(string username);
     }
 }
