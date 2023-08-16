@@ -33,12 +33,8 @@ namespace Task1.Controllers
                 return View("Index", user);
 
             }
-            
-            // If good logining
-            Response.Cookies.Append("username", user.UserName);
-            Response.Cookies.Append("password", user.Password);
                 
-            return RedirectToAction("Index", "RoleUser");
+            return RedirectToAction("Index", "RoleUser", user);
         }
     }
 }

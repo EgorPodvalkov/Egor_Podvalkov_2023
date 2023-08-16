@@ -20,15 +20,7 @@ namespace Task1.Controllers
 
         public IActionResult Index()
         {
-            var username = HttpContext.Request.Cookies["username"];
-            var password = HttpContext.Request.Cookies["password"];
-
-            if (username == null || password == null || !_db.CheckUser(username, password))
-            {
-                return RedirectToAction("Index", "Login");
-            }
-
-            return View();
+            return RedirectToAction("Index", "Login");
         }
 
         public IActionResult Privacy()

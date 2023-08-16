@@ -12,17 +12,14 @@ namespace Task1.Controllers
             _db = db;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string UserName, string Password)
         {
-            var username = HttpContext.Request.Cookies["username"];
-            var password = HttpContext.Request.Cookies["password"];
-
-            if (username == null || password == null || !_db.CheckUser(username, password) )
+            if (UserName == null || Password == null || !_db.CheckUser(UserName, Password) )
             {
                 return RedirectToAction("Index", "Login");
             }
 
-            var user = _db.GetUserByName(username);
+            var user = _db.GetUserByName(UserName);
 
             return View(user);
         }
