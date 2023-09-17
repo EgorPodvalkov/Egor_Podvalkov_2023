@@ -31,11 +31,14 @@ public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity>
     {
         await _dbContext.Set<TEntity>()
             .AddAsync(entity);
+
+        await _dbContext.SaveChangesAsync();
     }
 
     public async Task UpdateAsync(TEntity entity)
     {
         _dbContext.Set<TEntity>().Update(entity);
+        await _dbContext.SaveChangesAsync();
     }
 
     public async Task DeleteAsync(Guid id)
@@ -45,5 +48,7 @@ public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity>
         {
             _dbContext.Set<TEntity>().Remove(entity);
         }
+
+        await _dbContext.SaveChangesAsync();
     }
 }

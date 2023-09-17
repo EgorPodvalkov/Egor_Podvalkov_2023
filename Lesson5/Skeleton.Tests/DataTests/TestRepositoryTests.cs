@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using Moq;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Skeleton.DAL.Context;
 using Skeleton.DAL.Entities;
 using Skeleton.DAL.Repositories;
@@ -119,7 +117,7 @@ public class TestRepositoryTests
         var testRepository = new TestRepository(context);
 
         var testId = Guid.Parse(id);
-        var expectedDescription = RepositoryData.ExpectedTests.FirstOrDefault(x => x.Id == testId);
+        var expectedDescription = RepositoryData.ExpectedTests.FirstOrDefault(x => x.Id == testId).Description;
 
         var description = await testRepository.GetDescriptionAsync(testId);
 

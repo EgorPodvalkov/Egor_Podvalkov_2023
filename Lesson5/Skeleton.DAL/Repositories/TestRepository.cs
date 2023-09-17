@@ -29,6 +29,8 @@ public class TestRepository : BaseRepository<Test>, ITestRepository
     public async Task<string> GetDescriptionAsync(Guid id)
     {
         var test = await GetByIdAsync(id);
-        return test?.Description ?? "";
+        if (test is null)
+            throw new ArgumentException(nameof(test));
+        return test.Description;
     }
 }
